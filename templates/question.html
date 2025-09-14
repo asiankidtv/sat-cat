@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block title %}
+    Question Bank
+{% endblock %}
+
+{% block body %}
+    {% load static %}
+
+    <script src="{% static 'js/questions.js' %}"></script>
+
+    <h4 style="text-align: left; margin: 10px;" id="domain">{{ question.domain }}</h4>
+    <form id="questionForm" action="">
+        <div class="questionContainer">
+            <div class="stimulus" style="width: 50%; ">
+                <p>{{ question.question.paragraph }}</p>
+            </div>
+            <div class="answerChoiceBox" style="width: 50%;">
+                <h4 id="question">{{ question.question.question }}</h4>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="A" id="answerA">
+                        <label class="form-check-label stretched-link" for="answerA">{{ question.question.choices.A }}</label>
+                    </li>
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="B" id="answerB">
+                        <label class="form-check-label stretched-link" for="answerB">{{ question.question.choices.B }}</label>
+                    </li>
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="C" id="answerC">
+                        <label class="form-check-label stretched-link" for="answerC">{{ question.question.choices.C }}</label>
+                    </li>
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="D" id="answerD">
+                        <label class="form-check-label stretched-link" for="answerD">{{ question.question.choices.D }}</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+
+    <!--Check and Explanation Buttons-->
+    <div>
+        <button type="submit" class="btn btn-primary" id="checkButton" form="questionForm">Check</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#explanationBox">Explanation</button>
+
+        <div class="modal" tabindex="-1" id="explanationBox">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Explanation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ question.question.explanation }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Stores Answer (I highkey needa change this :< )-->
+    <p hidden aria-hidden="true" id="answer">{{ question.question.correct_answer }} </p>
+{% endblock %}
