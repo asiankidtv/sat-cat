@@ -14,22 +14,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("An error occured or an invalid input was submitted")
             }
         }
+        
+        const questionChoice = document.getElementById("answer" + answer).parentElement
+
 
         if (answer == document.getElementById("answer").innerText.trim()) {
             console.log("Correct!!")
-            // Change CSS of answerchoice to greem
+            questionChoice.style.color = "green"
         }
         else {
             console.log("Wrong 3:")
-            // Change CSS of answer choice to red
+            questionChoice.style.color = "red"
         }
     })
 })
-
-/*
-    TODO: 
-    - Get input sent through form
-    - Check if input and answer match
-    - If they do, change CSS of answer choice to Green
-    - If not, change CSS of answer choice to red
-*/
